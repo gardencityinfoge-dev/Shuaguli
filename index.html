@@ -176,10 +176,7 @@ async function safeRender(fn,pageName){
   }
 }
 
-function nav(page,param=null){if(_cur)_hist.push({..._cur});_render(page,param);}
-function goBack(){if(!_hist.length)return;const p=_hist.pop();_render(p.page,p.param);}
-function _render(page,param){
-  _cur={page,param};
+function nav(page, param = null) { if (typeof _cur !== 'undefined' && _cur) _hist.push({..._cur}); _render(page, param); }
   document.getElementById('back-btn').style.display=_hist.length>0?'inline-flex':'none';
   document.querySelectorAll('.nav-item').forEach(n=>n.classList.remove('active'));
   const nm={statistics:'statistics',events:'events','event-detail':'events',staff:'staff','staff-detail':'staff',cashier:'cashier',settings:'settings'};
